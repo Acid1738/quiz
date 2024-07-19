@@ -247,14 +247,7 @@ futimetext =
   ':' +
   futimetext.getSeconds();
 document.getElementById('time').innerText = 'you have until ' + futimetext;
-setInterval(() => {
-  if (Date.now() > futime) {
-    document.getElementById('field').style.display = 'none';
-    window.scrollTo(0, 0);
-    document.getElementById('time').innerText = 'TIME IS UP';
-    document.getElementById('time').style.color = 'red';
-  }
-}, 61000);
+
 
 /*  for (let i =0 ; i < naam.length; i++) {
   obj[i] = naam[i].innerText.toLowerCase()
