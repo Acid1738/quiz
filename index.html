@@ -2,13 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- <link rel="stylesheet" href="style.css"> -->
-    <!-- <script defer src="/app.js"></script> -->
+   <!--  <link rel="stylesheet" href="style.css">
+    <script defer src="/app.js"></script> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <style>
-    span {
+
+<style>
+span {
   background-color: black;
   text-transform: capitalize;
   line-height: 1.6em;
@@ -39,25 +40,27 @@ p {
   padding: 2%;
   position: fixed;
   top: 2%;
-  width: 90vw;
+  right: 2%;
+  border-radius: 100px;
 }
 
 #point {
   text-align: right;
 }
-  </style>
+</style>
+
   <body>
-    <div class="score">Matric Classmates
-      <div style="float: right;">
-        <p id="point">0</p>/124
+    
+      <div class="score" > score
+        <p id="point">0</p>/113
       </div>
-      
-    </div>
+   
 <input type="text" placeholder=" enter name here" id="field">
 <div style="height: 8vh;"></div>
 <li>write down the names, 2nd name , nickname and surnames for the different classmates </li>
 <li>boxes with green broders will give you 2 points</li>
-<li>you can write down only the names, or surnames or even mix match .eg instead of writing Will Smith and Travis  Scott you can write "Will Scott" or "Travis Will" and each point will be counted</li>
+<li>you can write down only the names, or surnames or even mix match .eg instead of writing Will Smith and Travis  Scott you can write "Will Scott" or "Travis Will" and each point will be counted accordingly</li>
+<li><p id="time">timer - 11:00</p></li>
     <h3>A</h3>
     • <span>aleah</span> <span>kader</span> <br>
     • <span>aneliswa</span> <span>dlamini</span> <br>
@@ -73,7 +76,7 @@ p {
     • <span>christine</span> <span>naidoo</span> <br>
     • <span>courtney</span> <span>govender</span> <br>
     <h3>E</h3>
-    • <span>erica</span> <span style="border: 2px solid green;" >madurai</span> <br>
+    • <span>erica</span> <span>Natalia</span> <span style="border: 2px solid green;" >madurai</span> <br>
     <h3>F</h3>
     • <span>fazzah</span> <span>khan</span> <br>
     • <span>fizzah</span> <span>khan</span> <br>
@@ -98,7 +101,7 @@ p {
     <h3>P</h3>
     • <span>pamela</span> <span>azande</span> <span>nzuza</span> <br>
     <h3>R</h3>
-    • <span>rivaldo</span> <span>goupal</span> <br>
+    • <span>rivaldo</span> <span>gopaul</span> <br>
     • <span>revashnee</span> <span>naidoo</span> <br>
     • <span>rowen</span> <span>chetty</span> <br>
     <h3>S</h3>
@@ -122,10 +125,10 @@ p {
 
     </div>
   </body>
- <script defer>
-  let naam = document.querySelectorAll('span');
-//console.log(naam.length);
 
+  <script defer >
+let naam = document.querySelectorAll('span');
+//console.log(naam.length);
 
 let obj = [
   'aleah',
@@ -153,6 +156,7 @@ let obj = [
   'courtney',
   'govender',
   'erica',
+  'natalia',
   'madurai',
   'fazzah',
   'khan',
@@ -192,7 +196,7 @@ let obj = [
   'azande',
   'nzuza',
   'rivaldo',
-  'goupal',
+  'gopaul',
   'revashnee',
   'naidoo',
   'rowen',
@@ -232,6 +236,32 @@ let obj = [
   'cele',
 ];
 
+//count down timer
+let currnetime = Date.now();
+let futime = currnetime + 660000;
+let futimetext = new Date(futime);
+futimetext =
+  futimetext.getHours() +
+  ':' +
+  futimetext.getMinutes() +
+  ':' +
+  futimetext.getSeconds();
+document.getElementById('time').innerText = 'you have until ' + futimetext;
+setInterval(() => {
+  if (Date.now() > futime) {
+    document.getElementById('field').style.display = 'none';
+    window.scrollTo(0, 0);
+    document.getElementById('time').innerText = 'TIME IS UP';
+    document.getElementById('time').style.color = 'red';
+  }
+}, 61000);
+
+/*  for (let i =0 ; i < naam.length; i++) {
+  obj[i] = naam[i].innerText.toLowerCase()
+}
+
+console.log(obj)  */
+
 //the perosons enters the name
 document.getElementById('field').addEventListener('keyup', () => {
   let data = document.getElementById('field').value;
@@ -240,7 +270,7 @@ document.getElementById('field').addEventListener('keyup', () => {
   let faf = data.split(' ');
   //take each name find it in the obj array
   faf.forEach((gama) => {
-    //console.log(gama);
+    console.log(gama);
     gama = gama.toLowerCase();
     let place = obj.indexOf(gama);
     //console.log('place :', place);
@@ -260,19 +290,21 @@ document.getElementById('field').addEventListener('keyup', () => {
         );
         let point = Number(document.getElementById('point').innerText);
         document.getElementById('point').innerText = point + 1;
+        naam[place].scrollIntoView(true);
+        window.scrollBy(0, -50);
         if (gama === 'naidoo') {
-          naam[38].style.backgroundColor = 'white';
-          naam[66].style.backgroundColor = 'white';
+          naam[39].style.backgroundColor = 'white';
+          naam[67].style.backgroundColor = 'white';
           let point = Number(document.getElementById('point').innerText);
           document.getElementById('point').innerText = point + 2;
         } else if (gama === 'khan') {
           let point = Number(document.getElementById('point').innerText);
           document.getElementById('point').innerText = point + 1;
-          naam[29].style.backgroundColor = 'white';
+          naam[30].style.backgroundColor = 'white';
         } else if (gama === 'pillay') {
           let point = Number(document.getElementById('point').innerText);
           document.getElementById('point').innerText = point + 1;
-          naam[93].style.backgroundColor = 'white';
+          naam[94].style.backgroundColor = 'white';
         } else if (gama === 'siyabulela') {
           let point = Number(document.getElementById('point').innerText);
           document.getElementById('point').innerText = point + 1;
@@ -311,8 +343,5 @@ document.getElementById('field').addEventListener('keyup', () => {
     }
   });
 });
-
-
-
- </script>
+  </script>
 </html>
